@@ -10,7 +10,6 @@ function Cards({ movie }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Movie Poster */}
       <div className="relative">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -18,7 +17,6 @@ function Cards({ movie }) {
           className="w-full h-80 object-fit"
         />
 
-        {/* Vote Average Badge */}
         <div className="absolute top-3 right-3 bg-gray-900 bg-opacity-75 text-white font-bold py-1 px-3 rounded-full flex items-center">
         <Star className="w-4 h-4 text-yellow-400 mr-1"/>
           <span>{movie.vote_average.toFixed(1)}/10</span>
@@ -27,14 +25,15 @@ function Cards({ movie }) {
 
       {/* Content */}
       <div className="p-4">
-        {/* Title */}
+
         <h3 className="font-bold text-lg text-gray-800 mb-2 line-clamp-2">
           {movie.title}
         </h3>
 
-        {/* Release Date */}
+
         <div className="text-sm text-gray-600 mb-3">
           <span className="font-medium">Released:</span>{" "}
+          {/* formated Date */}
           {new Date(movie.releaseDate).toLocaleDateString("en-US", {
             year: "numeric",
             month: "short",
@@ -55,7 +54,6 @@ function Cards({ movie }) {
         </div>
       </div>
 
-      {/* Hover Overlay with More Info Button */}
       <div
         className={`absolute inset-0 bg-gradient-to-t from-black via-black  to-transparent opacity-0 transition-opacity duration-300 flex flex-col items-center justify-between p-6 ${
           isHovered ? "opacity-100" : ""
