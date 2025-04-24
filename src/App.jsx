@@ -110,13 +110,13 @@ function App() {
 
         {/* Main Content */}
         <main className=" pt-24 pb-16 bg-stone-50">
-          <div className="container max-[1600px] m-auto px-4">
+          <div className="container  m-auto px-4">
             <div className="flex flex-col items-center">
               <h1 className="text-4xl font-bold text-gray-800 mb-6 animate-fadeSlideUp">
                 Check Our Latest Collections
               </h1>
              
-              <div className=" w-full grid grid-cols-2  md:grid-cols-5 bg-gradient-to-r bg-gradient-to-r from-[#E2E2E2] to-[#C9D6FF] rounded-lg animate-fadeIn animation-delay-500">
+              <div className=" w-full grid grid-cols-2 md:grid-cols-4 place-items-center gap-4 p-6 bg-gradient-to-r bg-gradient-to-r from-[#E2E2E2] to-[#C9D6FF] rounded-2xl animate-fadeIn animation-delay-500">
                 {data?.map((movie) => {
                   return <Cards key={movie.id} movie={movie} />;
                 })}

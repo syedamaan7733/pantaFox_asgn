@@ -6,7 +6,7 @@ function Cards({ movie }) {
   console.log(movie);
   return (
     <div
-      className="relative bg-white rounded-lg overflow-hidden shadow-lg w-64 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+      className="relative  bg-white rounded-xl overflow-hidden shadow-lg w-64 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -15,11 +15,11 @@ function Cards({ movie }) {
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={`${movie.title} poster`}
-          className="w-full h-80 object-cover"
+          className="w-full h-80 object-fit"
         />
 
         {/* Vote Average Badge */}
-        <div className="absolute top-3 right-3 bg-gray-900 bg-opacity-65 text-white font-bold py-1 px-3 rounded-full flex items-center">
+        <div className="absolute top-3 right-3 bg-gray-900 bg-opacity-75 text-white font-bold py-1 px-3 rounded-full flex items-center">
         <Star className="w-4 h-4 text-yellow-400 mr-1"/>
           <span>{movie.vote_average.toFixed(1)}/10</span>
         </div>
@@ -57,11 +57,12 @@ function Cards({ movie }) {
 
       {/* Hover Overlay with More Info Button */}
       <div
-        className={`absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 transition-opacity duration-300 flex items-end justify-center p-6 ${
+        className={`absolute inset-0 bg-gradient-to-t from-black via-black  to-transparent opacity-0 transition-opacity duration-300 flex flex-col items-center justify-between p-6 ${
           isHovered ? "opacity-100" : ""
         }`}
       >
-        <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md font-medium transition-colors duration-300">
+        <p className="text-stone-200 flex flex-1/2 text-center justify-center items-end pb-5 text-sm">{movie.overview}</p>
+        <button className="bg-blue-600  hover:bg-blue-700 text-white py-2 px-4 rounded-md font-medium transition-colors duration-300">
           View Details
         </button>
       </div>
