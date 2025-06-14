@@ -3,7 +3,7 @@ import useDebounce from "../hooks/useDebounse";
 import useMovieSearch from "../hooks/useMovieSearch";
 import { Film, Loader2, Search } from "lucide-react";
 import API_CONFIG from "../utils/API_CONFIG";
-import { useAppContext } from "../assets/context/AppContext";
+import { useAppContext } from "../context/AppContext";
 
 
 const SearchComponent = () => {

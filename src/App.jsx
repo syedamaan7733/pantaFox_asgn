@@ -1,9 +1,6 @@
-import axios from "axios";
-import { Loader, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
-import "./App.css";
-import Cards from "./Component/Cards";
 
+import { Loader, Menu, X } from "lucide-react";
+import "./App.css";
 import Navbar from "./Component/Navbar";
 import SearchComponent from "./Component/Search";
 import { useAppContext } from "./context/AppContext";
