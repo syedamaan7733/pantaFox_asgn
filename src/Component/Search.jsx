@@ -3,8 +3,8 @@ import useDebounce from "../hooks/useDebounse";
 import useMovieSearch from "../hooks/useMovieSearch";
 import { Film, Loader2, Search } from "lucide-react";
 import API_CONFIG from "../utils/API_CONFIG";
-import { useAppContext } from "../context/AppContext";
-import useMovieData from "../hooks/useMovieData";
+import { useAppContext } from "../assets/context/AppContext";
+
 
 const SearchComponent = () => {
   const [query, setQuery] = useState("");
@@ -13,8 +13,6 @@ const SearchComponent = () => {
   const { searchResults, isSearching, searchError, searchMovies } =
     useMovieSearch();
 
-  const { updateMovie, movies } = useMovieData();
-  console.log(searchResults);
   const {
     screenSize: { isMobile, isDesktop },
   } = useAppContext();
@@ -46,23 +44,11 @@ const SearchComponent = () => {
     setQuery(e.target.value);
   };
 
-  const handleKeyPress = async (e) => {
+  const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-
-      if (query.trim()) {
-        try {
-          const results = await searchMovies(query.trim());
-
-          if (results && results.length > 0) {
-            updateMovie(results);
-          }
-
-          setIsOpen(false);
-        } catch (error) {
-          console.error("Search failed:", error);
-        }
-      }
+      console.log("movie");
+      setIsOpen(false);
     }
   };
 
@@ -122,13 +108,36 @@ const SearchComponent = () => {
               {searchResults.map((movie) => (
                 <div
                   key={movie.id}
-                  onClick={() => handleMovieClick(movie.title)}
+                  onClick={() => handleMovieClick(movie)}
                   className="px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-150 border-b border-gray-100 last:border-b-0"
                 >
                   <div className="flex items-center space-x-3">
+                    <div className="flex-shrink-0">
+                      {movie.poster_path ? (
+                        <img
+                          src={`${API_CONFIG.IMAGE_BASE_URL}${movie.poster_path}`}
+                          alt={movie.title}
+                          className="w-10 h-14 object-cover rounded"
+                        />
+                      ) : (
+                        <div className="w-10 h-14 bg-gray-200 rounded flex items-center justify-center">
+                          <Film className="w-4 h-4 text-gray-400" />
+                        </div>
+                      )}
+                    </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-gray-900 truncate">
                         {movie.title}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        {movie.release_date
+                          ? new Date(movie.release_date).getFullYear()
+                          : "TBA"}
+                        {movie.vote_average > 0 && (
+                          <span className="ml-2">
+                            ⭐ {movie.vote_average.toFixed(1)}
+                          </span>
+                        )}
                       </p>
                     </div>
                   </div>
