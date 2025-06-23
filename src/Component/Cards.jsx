@@ -1,7 +1,11 @@
 import { Star } from "lucide-react";
 import React, { useState } from "react";
 
-function Cards({ movie, movie: { poster_path: movirePoster = "" } = {} }) {
+function Cards({
+  movie,
+  movie: { id = 0, poster_path: movirePoster = "" } = {},
+  handleMovieDetail,
+}) {
   const [isHovered, setIsHovered] = useState(false);
   const [imageError, setImageError] = useState(false);
 
@@ -30,7 +34,7 @@ function Cards({ movie, movie: { poster_path: movirePoster = "" } = {} }) {
 
         <div className="absolute top-3 right-3 bg-gray-900 bg-opacity-75 text-white font-bold py-1 px-3 rounded-full flex items-center">
           <Star className="w-4 h-4 text-yellow-400 mr-1" />
-          <span>{movie.vote_average?.toFixed(1) || 'N/A'}/10</span>
+          <span>{movie.vote_average?.toFixed(1) || "N/A"}/10</span>
         </div>
       </div>
 
@@ -42,14 +46,13 @@ function Cards({ movie, movie: { poster_path: movirePoster = "" } = {} }) {
 
         <div className="text-sm text-gray-600 mb-3">
           <span className="font-medium">Released:</span>{" "}
-          {movie.release_date 
+          {movie.release_date
             ? new Date(movie.release_date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "short",
                 day: "numeric",
               })
-            : "TBA"
-          }
+            : "TBA"}
         </div>
 
         {/* Genre Tags */}
@@ -73,9 +76,12 @@ function Cards({ movie, movie: { poster_path: movirePoster = "" } = {} }) {
         <p className="text-stone-200 flex flex-1/2 text-center justify-center items-end pb-5 text-sm">
           {movie.overview || "No overview available."}
         </p>
-        {/* <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md font-medium transition-colors duration-300">
-          View Details
-        </button> */}
+        <button
+          onClick={() => handleMovieDetail(id)}
+          className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md font-medium transition-colors duration-300"
+        >
+          View Detail
+        </button>
       </div>
     </div>
   );

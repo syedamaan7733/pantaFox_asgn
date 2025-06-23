@@ -47,7 +47,6 @@ const SearchComponent = () => {
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      console.log("movie");
       setIsOpen(false);
     }
   };

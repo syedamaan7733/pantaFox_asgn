@@ -1,4 +1,3 @@
-
 import { Loader, Menu, X } from "lucide-react";
 import "./App.css";
 import Navbar from "./Component/Navbar";
@@ -17,7 +16,6 @@ function App() {
     <>
       <div className="min-h-screen flex flex-col">
         <Navbar />
-
         {/* Main Content */}
         <main className="pt-24 pb-16 bg-stone-50">
           <div className="container m-auto px-4">
@@ -49,7 +47,9 @@ function App() {
               {loading ? (
                 <div className="flex justify-center items-center py-20">
                   <Loader size={32} className="animate-spin text-blue-600" />
-                  <span className="ml-3 text-gray-600 text-lg">Loading movies...</span>
+                  <span className="ml-3 text-gray-600 text-lg">
+                    Loading movies...
+                  </span>
                 </div>
               ) : data?.length ? (
                 <MovieGrid />
