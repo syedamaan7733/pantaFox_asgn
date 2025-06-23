@@ -2,6 +2,7 @@ import { Menu, X } from "lucide-react";
 import { useAppContext } from "../context/AppContext";
 import useScrollEffect from "../hooks/useScrolled";
 import SearchComponent from "./Search";
+import AnimatedGradientButtons from "./AnimatedButton";
 
 function Navbar() {
   const isScrolled = useScrollEffect();
@@ -10,7 +11,6 @@ function Navbar() {
     screenSize: { isMobile, isDesktop },
     toggleMenu: { toggleMenu, isMenuOpen },
   } = useAppContext();
-
 
   return (
     <header
@@ -21,43 +21,41 @@ function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4">
-
         <div className="flex justify-between items-center">
-  {/* company name */}
-  <div className="freckle-face-regular text-3xl font-bold transform transition hover:scale-105 duration-300">
-    MovieFlix
-  </div>
-  
-  {/* Expanded Search Section for Desktop */}
-  {isDesktop && (
-    <div className="flex-1 max-w-2xl mx-8 px-4">
-      <SearchComponent />
-    </div>
-  )}
-  
-  <nav className="hidden md:block">
-    <ul className="flex space-x-8">
-      {["Home", "Favourite", "Bookings", "DragonZ"].map((item) => (
-        <li key={item}>
-          <a
-            href="#"
-            className="relative font-medium hover:text-indigo-400 transition-colors duration-300 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-indigo-400 after:transition-all hover:after:w-full"
-          >
-            {item}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </nav>
+          <div className="freckle-face-regular text-3xl font-bold transform transition hover:scale-105 duration-300">
+            MovieFlix
+          </div>
 
-  {/* Mobile menu button */}
-  <button className="md:hidden text-2xl" onClick={toggleMenu}>
-    {isMenuOpen ? <X /> : <Menu />}
-  </button>
-</div>
+          {isDesktop && (
+            <div className="flex-1 max-w-2xl mx-8 px-4">
+              <SearchComponent />
+            </div>
+          )}
 
+          <nav className="hidden md:block">
+            <ul className="flex space-x-8">
+              {["Home", "Favourite", "Bookings", "event"].map((item) => (
+                <li className="flex flex-col justify-center items-center" key={item}>
+                  {item === "event" ? (
+                    <AnimatedGradientButtons item={item} />
+                  ) : (
+                    <a
+                      href="#"
+                      className="relative font-medium hover:text-indigo-400 transition-colors duration-300 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-indigo-400 after:transition-all hover:after:w-full"
+                    >
+                      {item}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        {/* Mobile navigation */}
+          <button className="md:hidden text-2xl" onClick={toggleMenu}>
+            {isMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
+
         {isMenuOpen && (
           <nav className="md:hidden mt-4 pb-4 animate-fadeIn">
             <ul className="flex flex-col space-y-4">
