@@ -7,7 +7,6 @@ const useMovieSearch = () => {
   const [searchError, setSearchError] = useState(null);
 
   const searchMovies = useCallback(async (query) => {
-    // console.log("hiii search", query)
     if (!query.trim()) {
       setSearchResults([]);
       return;

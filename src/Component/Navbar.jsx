@@ -12,6 +12,8 @@ function Navbar() {
     toggleMenu: { toggleMenu, isMenuOpen },
   } = useAppContext();
 
+  const event = "DragonX";
+
   return (
     <header
       className={`fixed w-full z-50 transition-all duration-500 ease-in-out ${
@@ -34,9 +36,12 @@ function Navbar() {
 
           <nav className="hidden md:block">
             <ul className="flex space-x-8">
-              {["Home", "Favourite", "Bookings", "event"].map((item) => (
-                <li className="flex flex-col justify-center items-center" key={item}>
-                  {item === "event" ? (
+              {["Home", "Favourite", "Bookings", event].map((item) => (
+                <li
+                  className="flex flex-col justify-center items-center"
+                  key={item}
+                >
+                  {item === event ? (
                     <AnimatedGradientButtons item={item} />
                   ) : (
                     <a
