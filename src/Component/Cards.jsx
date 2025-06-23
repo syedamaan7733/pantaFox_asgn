@@ -73,9 +73,9 @@ function Cards({ movie, movie: { poster_path: movirePoster = "" } = {} }) {
         <p className="text-stone-200 flex flex-1/2 text-center justify-center items-end pb-5 text-sm">
           {movie.overview || "No overview available."}
         </p>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md font-medium transition-colors duration-300">
+        {/* <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md font-medium transition-colors duration-300">
           View Details
-        </button>
+        </button> */}
       </div>
     </div>
   );
